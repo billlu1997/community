@@ -18,7 +18,7 @@ public class AuthController {
 
     @Value("${github.client.id}")
     private String clientId;
-    @Value("${github.client.secret")
+    @Value("${github.client.secret}")
     private String clientSecret;
     @Value("${github.redirect.uri}")
     private String redirectUri;
@@ -40,6 +40,7 @@ public class AuthController {
         GithubUser user = githubProvider.getUser(accessToken);
         if(user != null) {
             // login success
+            System.out.println(user.getId());
             request.getSession().setAttribute("user", user);
             return "redirect:/";
         } else {
