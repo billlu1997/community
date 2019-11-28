@@ -1,4 +1,4 @@
-create table USER
+create table COMMUNITY.PUBLIC.USER
 (
     ID           INTEGER auto_increment,
     ACCOUNT_ID   VARCHAR(100),
