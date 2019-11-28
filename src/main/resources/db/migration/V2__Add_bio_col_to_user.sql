@@ -1,2 +1,2 @@
-alter table COMMUNITY.PUBLIC.USER
+alter table USER
     add BIO varchar(256);

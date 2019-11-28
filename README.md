@@ -8,5 +8,11 @@
 
 [Github OAuth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
 
+[Flyway](https://flywaydb.org/getstarted/firststeps/maven)
+
 ## Tools
 [git](https://git-scm.com/)
+
+```shell script
+mvn flyway:migrate
+```

@@ -31,8 +31,8 @@ public class AuthController {
     private UserMapper userMapper;
 
     @GetMapping("/callback")
-    public String callback(@RequestParam(name="code") String code,
-                           @RequestParam(name="state") String state,
+    public String callback(@RequestParam(name = "code") String code,
+                           @RequestParam(name = "state") String state,
                            HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(clientId);
@@ -44,7 +44,7 @@ public class AuthController {
 
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser githubUser = githubProvider.getUser(accessToken);
-        if(githubUser != null) {
+        if (githubUser != null && githubUser.getId() != null) {
             // login success
             User user = new User();
             String token = UUID.randomUUID().toString();
@@ -53,8 +53,12 @@ public class AuthController {
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setBio(githubUser.getBio());
             userMapper.insert(user);
-            response.addCookie(new Cookie("token", token));
+            Cookie cookie = new Cookie("token", token);
+            cookie.setMaxAge(30 * 24 * 60 * 60);
+            cookie.setPath("/");
+            response.addCookie(cookie);
 
 //            System.out.println(githubUser.getId());
 //            request.getSession().setAttribute("user", githubUser);
