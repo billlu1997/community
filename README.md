@@ -10,6 +10,7 @@
 
 [Flyway](https://flywaydb.org/getstarted/firststeps/maven)
 
+[Lombok](https://projectlombok.org/)
 ## Tools
 [git](https://git-scm.com/)
 

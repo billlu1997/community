@@ -11,13 +11,16 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface UserMapper {
 
-    @Insert("INSERT INTO COMMUNITY.PUBLIC.USER (NAME, ACCOUNT_ID, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO) VALUES (#{name}, #{accountId}, #{token}, #{gmtCreate}, #{gmtModified}, #{bio});")
+    @Insert("INSERT INTO USER (NAME, ACCOUNT_ID, TOKEN, GMT_CREATE, GMT_MODIFIED, BIO, AVATAR_URL) VALUES (#{name}, #{accountId}, #{token}, #{gmtCreate}, #{gmtModified}, #{bio},#{avatarUrl});")
     void insert(User user);
 
 
-    @Select("SELECT * FROM COMMUNITY.PUBLIC.USER WHERE TOKEN=#{token}")
+    @Select("SELECT * FROM USER WHERE TOKEN=#{token}")
     User findByToken(@Param("token") String token);
 
     @Select("SELECT * FROM USER WHERE ACCOUNT_ID=#{accountId}")
     User findByAccount(@Param("accountId") String accountId);
+
+    @Select("SELECT * FROM USER WHERE ID=#{id}")
+    User findById(@Param("id") Integer id);
 }

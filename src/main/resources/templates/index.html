@@ -5,10 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 
-<!--    <link rel="stylesheet" href="css/bootstrap-theme.min.css">-->
-<!--    <script src="js/bootstrap.min.js" type="application/javascript"></script>-->
+    <!--    <link rel="stylesheet" href="css/bootstrap-theme.min.css">-->
+    <!--    <script src="js/bootstrap.min.js" type="application/javascript"></script>-->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/community.css">
     <script src="js/bootstrap.js" type="application/javascript"></script>
 </head>
 <body>
@@ -19,9 +20,9 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Community</span>
-<!--                <span class="icon-bar"></span>-->
-<!--                <span class="icon-bar"></span>-->
-<!--                <span class="icon-bar"></span>-->
+                <!--                <span class="icon-bar"></span>-->
+                <!--                <span class="icon-bar"></span>-->
+                <!--                <span class="icon-bar"></span>-->
             </button>
             <a class="navbar-brand" href="/">Bill's Community</a>
         </div>
@@ -50,10 +51,38 @@
 
                     </ul>
                 </li>
-                <li th:if="${session.user == null}"><a href="https://github.com/login/oauth/authorize?client_id=9eb711628fbfd9410bc9&redirect_uri=http://localhost:8887/callback&scope=user&state=1">Log in</a></li>
+                <li th:if="${session.user == null}"><a
+                        href="https://github.com/login/oauth/authorize?client_id=9eb711628fbfd9410bc9&redirect_uri=http://localhost:8887/callback&scope=user&state=1">Log
+                    in</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<div class="container-fluid main" style="margin: 30px">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Discover</h2>
+            <hr>
+            <div class="media" th:each="question : ${questions}">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-rounded" th:src="${question.user.avatarUrl}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <span th:text="${question.description}"></span>
+                    <span class="blog-info">• <span th:text="${question.commentCount==null||question.commentCount==0? 0:question.commentCount}"></span> Comments • <span
+                            th:text="${question.viewCount==null||question.viewCount==0? 0:question.viewCount}"></span> Views • <span th:text="${#dates.format(question.gmtCreate, 'dd MMMM yyyy')}"></span></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>What's hot</h3>
+            Check Out the news here
+        </div>
+    </div>
+</div>
 </body>
 </html>
