@@ -11,6 +11,8 @@
 [Flyway](https://flywaydb.org/getstarted/firststeps/maven)
 
 [Lombok](https://projectlombok.org/)
+
+[Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html)
 ## Tools
 [git](https://git-scm.com/)
 
